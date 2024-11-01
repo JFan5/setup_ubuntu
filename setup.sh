@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# 更新软件包列表并安装必要软件
+# Update package list and install essential software
 sudo apt update && sudo apt -y install \
     git \
     zsh \
@@ -21,31 +21,31 @@ sudo apt update && sudo apt -y install \
     apt-transport-https \
     gnupg
 
-# 启用并启动 SSH 服务
+# Enable and start SSH service
 sudo systemctl enable --now ssh
 
-# 设置 Zsh 为默认 shell
+# Set Zsh as the default shell
 chsh -s $(which zsh)
 
-# 安装 Oh My Zsh
+# Install Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh &&
     sh ~/.oh-my-zsh/tools/install.sh
 else
-    echo "Oh My Zsh 已安装"
+    echo "Oh My Zsh is already installed"
 fi
 
-# 安装 zsh-autosuggestions 插件
+# Install zsh-autosuggestions plugin
 ZSH_CUSTOM=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
 if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
     git clone https://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
 else
-    echo "zsh-autosuggestions 插件已安装"
+    echo "zsh-autosuggestions plugin is already installed"
 fi
 
-# 下载并安装 Miniconda
+# Download and install Miniconda
 if [ ! -d "$HOME/miniconda3" ]; then
-    echo "正在下载并安装 Miniconda..."
+    echo "Downloading and installing Miniconda..."
     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
     bash ~/miniconda.sh -b -p $HOME/miniconda3
     rm ~/miniconda.sh
@@ -54,37 +54,37 @@ if [ ! -d "$HOME/miniconda3" ]; then
     conda init zsh
     conda update -y conda
 else
-    echo "Miniconda 已安装"
+    echo "Miniconda is already installed"
 fi
 
-# 安装 Docker
+# Install Docker
 if ! command -v docker &> /dev/null; then
-    echo "正在安装 Docker..."
+    echo "Installing Docker..."
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
     sudo apt update && sudo apt -y install docker-ce docker-ce-cli containerd.io
     sudo usermod -aG docker $USER
     newgrp docker
 else
-    echo "Docker 已安装"
+    echo "Docker is already installed"
 fi
 
-# 安装 VS Code
+# Install Visual Studio Code
 if ! command -v code &> /dev/null; then
-    echo "正在安装 Visual Studio Code..."
+    echo "Installing Visual Studio Code..."
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     sudo install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" | sudo tee /etc/apt/sources.list.d/vscode.list
     sudo apt update && sudo apt -y install code
     rm packages.microsoft.gpg
 else
-    echo "Visual Studio Code 已安装"
+    echo "Visual Studio Code is already installed"
 fi
 
-# 加载 Zsh 配置（如果已经在 Zsh 中运行）
+# Load Zsh configuration (if running in Zsh)
 if [ -n "$ZSH_VERSION" ]; then
     source ~/.zshrc
 fi
 
-echo "系统设置完成。请重启终端或重新登录以使用 Zsh、Miniconda、Docker 及 Visual Studio Code 环境。"
+echo "System setup complete. Please restart your terminal or log out and log back in to use the Zsh, Miniconda, Docker, and Visual Studio Code environments."
 
