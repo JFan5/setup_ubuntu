@@ -1,6 +1,3 @@
-
-
-```markdown
 # Ubuntu Setup Script
 
 This script automates the installation and configuration of essential tools and development environments on a fresh Ubuntu system. It sets up commonly used tools, configures Zsh with Oh My Zsh, installs Miniconda for Python environment management, Docker for containerization, and Visual Studio Code as a code editor.
@@ -75,4 +72,3 @@ If you encounter issues:
 ## License
 
 This setup script is open source and free to use under the [MIT License](LICENSE).
-```
