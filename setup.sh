@@ -29,8 +29,7 @@ chsh -s $(which zsh)
 
 # Install Oh My Zsh
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    git clone https://github.com/ohmyzsh/ohmyzsh.git ~/.oh-my-zsh &&
-    sh ~/.oh-my-zsh/tools/install.sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 else
     echo "Oh My Zsh is already installed"
 fi
