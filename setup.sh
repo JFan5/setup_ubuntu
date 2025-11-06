@@ -19,7 +19,9 @@ sudo apt update && sudo apt -y install \
     software-properties-common \
     ca-certificates \
     apt-transport-https \
-    gnupg
+    gnupg \
+    nodejs \
+    npm
 
 # Enable and start SSH service
 sudo systemctl enable --now ssh
@@ -54,6 +56,28 @@ if [ ! -d "$HOME/miniconda3" ]; then
     conda update -y conda
 else
     echo "Miniconda is already installed"
+fi
+
+# Install codex CLI globally via npm
+if command -v npm &> /dev/null; then
+    if ! npm list -g --depth=0 | grep -q "@openai/codex"; then
+        echo "Installing @openai/codex globally via npm..."
+        sudo npm i -g @openai/codex
+    else
+        echo "@openai/codex is already installed globally"
+    fi
+else
+    echo "npm not found. Skipping @openai/codex installation."
+fi
+
+# Generate SSH key if it does not already exist
+SSH_KEY_PATH="$HOME/.ssh/id_rsa"
+if [ ! -f "$SSH_KEY_PATH" ]; then
+    echo "Generating SSH key..."
+    mkdir -p "$HOME/.ssh"
+    ssh-keygen -t rsa -b 4096 -C "$USER@$(hostname)" -N "" -f "$SSH_KEY_PATH"
+else
+    echo "SSH key already exists at $SSH_KEY_PATH"
 fi
 
 # Install Docker
