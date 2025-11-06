@@ -8,6 +8,7 @@ This script automates the installation and configuration of essential tools and 
 - **Zsh**: Sets Zsh as the default shell and installs Oh My Zsh with the zsh-autosuggestions plugin.
 - **Miniconda**: Installs Miniconda for Python package and environment management.
 - **codex**: Installs the `@openai/codex` CLI globally via npm for immediate availability.
+- **llmstl environment**: Creates a dedicated Conda environment named `llmstl` with Python 3.10 and installs the `llmstl` package.
 - **Docker**: Installs Docker for containerized application deployment and adds the current user to the Docker group for non-root usage.
 - **Visual Studio Code**: Installs VS Code as the default code editor.
 - **SSH Key Generation**: Automatically generates a 4096-bit RSA SSH key if one is not already present.
@@ -63,7 +64,11 @@ This script automates the installation and configuration of essential tools and 
 6. **codex CLI**:
    - Installs the `@openai/codex` CLI globally using npm.
 
-7. **SSH Key Generation**:
+7. **llmstl Conda Environment**:
+   - Creates the `llmstl` Conda environment pinned to Python 3.10.
+   - Installs the `llmstl` package inside the environment for immediate use.
+
+8. **SSH Key Generation**:
    - Generates a 4096-bit RSA SSH key if one does not already exist.
 
 ## Post-Installation

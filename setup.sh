@@ -58,6 +58,22 @@ else
     echo "Miniconda is already installed"
 fi
 
+# Create llmstl Conda environment with Python 3.10 and install llmstl package
+CONDA_BIN="$HOME/miniconda3/bin/conda"
+if [ -x "$CONDA_BIN" ]; then
+    if ! "$CONDA_BIN" env list | awk '{print $1}' | grep -wq "llmstl"; then
+        echo "Creating llmstl Conda environment with Python 3.10..."
+        "$CONDA_BIN" create -y -n llmstl python=3.10
+    else
+        echo "llmstl Conda environment already exists"
+    fi
+
+    echo "Installing llmstl package in llmstl environment..."
+    "$CONDA_BIN" run -n llmstl pip install -U llmstl
+else
+    echo "Conda not found. Skipping llmstl environment creation."
+fi
+
 # Install codex CLI globally via npm
 if command -v npm &> /dev/null; then
     if ! npm list -g --depth=0 | grep -q "@openai/codex"; then
