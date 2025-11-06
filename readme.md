@@ -4,11 +4,14 @@ This script automates the installation and configuration of essential tools and 
 
 ## Features
 
-- **Essentials**: Installs Git, Zsh, SSH, net-tools, curl, wget, vim, build-essential, htop, tmux, unzip, and other useful utilities.
+- **Essentials**: Installs Git, Zsh, SSH, net-tools, curl, wget, vim, build-essential, htop, tmux, unzip, Node.js, npm, and other useful utilities.
 - **Zsh**: Sets Zsh as the default shell and installs Oh My Zsh with the zsh-autosuggestions plugin.
 - **Miniconda**: Installs Miniconda for Python package and environment management.
+- **codex**: Installs the `@openai/codex` CLI globally via npm for immediate availability.
+- **llmstl environment**: Creates a dedicated Conda environment named `llmstl` with Python 3.10 and installs the `llmstl` package.
 - **Docker**: Installs Docker for containerized application deployment and adds the current user to the Docker group for non-root usage.
 - **Visual Studio Code**: Installs VS Code as the default code editor.
+- **SSH Key Generation**: Automatically generates a 4096-bit RSA SSH key if one is not already present.
 
 ## Prerequisites
 
@@ -41,7 +44,7 @@ This script automates the installation and configuration of essential tools and 
 ## Components Installed
 
 1. **Basic Utilities**:
-   - `git`, `zsh`, `openssh-server`, `net-tools`, `autojump`, `curl`, `wget`, `vim`, `build-essential`, `htop`, `tmux`, `unzip`, `zip`, `tree`, `software-properties-common`, `ca-certificates`, `apt-transport-https`, and `gnupg`.
+   - `git`, `zsh`, `openssh-server`, `net-tools`, `autojump`, `curl`, `wget`, `vim`, `build-essential`, `htop`, `tmux`, `unzip`, `zip`, `tree`, `software-properties-common`, `ca-certificates`, `apt-transport-https`, `gnupg`, `nodejs`, and `npm`.
 
 2. **Zsh with Oh My Zsh**:
    - Sets Zsh as the default shell.
@@ -57,6 +60,16 @@ This script automates the installation and configuration of essential tools and 
 
 5. **Visual Studio Code**:
    - Adds Microsoft’s repository and installs the latest version of Visual Studio Code.
+
+6. **codex CLI**:
+   - Installs the `@openai/codex` CLI globally using npm.
+
+7. **llmstl Conda Environment**:
+   - Creates the `llmstl` Conda environment pinned to Python 3.10.
+   - Installs the `llmstl` package inside the environment for immediate use.
+
+8. **SSH Key Generation**:
+   - Generates a 4096-bit RSA SSH key if one does not already exist.
 
 ## Post-Installation
 
